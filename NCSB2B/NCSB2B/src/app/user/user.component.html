@@ -1,0 +1,98 @@
+<div class="col-md-12 mt-2 pt-3">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <span class="anchor" id="formRegister"></span>
+
+      <div class="card card-outline-secondary">
+        <div class="card-header bg-dark">
+          <h3 class=" text-light">User</h3>
+        </div>
+
+        <div class="card-body">
+          <div class="alert alert-success" *ngIf="message">
+            <strong>{{ message }}</strong>
+          </div>
+          <form class="form" role="form" autocomplete="off">
+            <div class="form-group">
+              <label for="inputName">First Name</label>
+              <input [(ngModel)]="form.firstName" name="firstName" type="text" class="form-control"
+                placeholder="Enter First Name">
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3">Last Name</label>
+              <input type="text" [(ngModel)]="form.lastName" name="lastName" class="form-control"
+                placeholder="Enter Last Name" required="">
+            </div>
+            <div class="form-group">
+              <label for="inputPassword3">Login Id</label>
+              <input type="text" [(ngModel)]="form.loginId" name="loginId" class="form-control" placeholder="Enter Login Id"
+                required="">
+            </div>
+            <div class="form-group">
+              <label for="inputPassword3">Password</label>
+              <input type="text" [(ngModel)]="form.password" name="password" class="form-control" placeholder="Enter Password"
+                required="">
+            </div>
+
+            <div class="form-group">
+              <label for="inputPassword3">Email</label>
+              <input type="text" [(ngModel)]="form.email" name="email" class="form-control" placeholder="demo@gmail.com"
+                required="">
+            </div>
+            <div class="form-group">
+              <label for="inputPassword3">Status</label>
+              <input type="text" [(ngModel)]="form.status" name="status" class="form-control" placeholder="Enter Status"
+                required="">
+            </div>
+            <div class="form-group">
+              <label for="inputPassword3">Role Name</label>
+              <input type="text" [(ngModel)]="form.roleName" name="roleName" class="form-control" placeholder="Enter Role Name"
+                required="">
+            </div>
+            <div class="form-group">
+              <label for="inputPassword3">Phone</label>
+              <input type="text" [(ngModel)]="form.phone" name="phone" class="form-control" placeholder="8888888888"
+                required="">
+            </div>
+            <div class="form-group">
+              <label for="inputPassword3">Alternate Mobile</label>
+              <input type="text" [(ngModel)]="form.alternateMobile" name="alternateMobile" class="form-control"
+                placeholder="8888888888" required="">
+            </div>
+            <div class="form-group">
+              <label for="inputPassword3">Date of Birth</label>
+              <input type="text" [(ngModel)]="form.dob" name="dob" class="form-control" placeholder="1997-05-05"
+                required="">
+            </div>
+            <div class="form-group">
+                <label for="inputPassword3">Gender</label>
+                <select class="form-control"  [(ngModel)]="form.gender" name="gender" placeholder="Enter your Gender" >
+                    <option value="" selected>--Select Gender--</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+
+                  </select>
+            </div>
+
+            <div class="form-group">
+              <label for="inputPassword3">Image Path</label>
+              <input type="text" [(ngModel)]="form.imagePath" name="imagePath" class="form-control"
+                placeholder="Select Image" required="">
+            </div>
+
+            <div class="form-group">
+
+              <button (click)="save()" type="submit" [disabled]="!validateAddRoleBt()"
+                class="btn btn-success offset-md-4">
+                Save
+              </button>
+              <span class="mx-3"><button (click)="search()" type="submit" class="btn btn-primary">
+                  Search
+                </button></span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,195 @@
+&nbsp;&nbsp;<h1>&nbsp;Product List</h1>
+<div class="row col-lg-12">
+  &nbsp; &nbsp;
+  <div class=" pt-1">
+    <input class="input-large" [(ngModel)]="form.name" name="name" type="text" placeholder="Search by Product Name" />
+  </div>&nbsp;
+  <div class="col-lg-1.9">
+
+    <button (click)="search()" class="btn btn-primary">
+      Search
+      <i class="fa fa-search"></i>
+    </button>
+  </div>
+  <div class="col-lg-2">
+    <button (click)="edit(0)" type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Add
+      <i class='fa fa-plus'></i>
+    </button>
+
+  </div>
+  <div class="col-lg-5"></div>
+  <!-- <div class="pt-2 float-right ml-2">
+    <label>
+      <b>Page No.&nbsp; </b>
+    </label>
+    <select (change)="go($event.target.value)" style="width: 60px;">
+      <option *ngFor="let page of PageCount" value={{page.id}}>
+        {{page.value}}
+      </option>
+    </select>
+  </div> -->
+</div>
+<br>
+<div class="row alert alert-danger" *ngIf="searchMessage">
+  <strong>{{searchMessage}}</strong>
+</div>
+<div class="row alert alert-success" *ngIf="deleteMessage">
+  <strong>{{deleteMessage}}</strong>
+</div>
+
+<div class="p-2">
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Bag-Quantity</th>
+        <th scope="col">Size</th>
+
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+        <th scope="col">Add to Cart</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let e of list; let i = index">
+            <td> {{(pageNo*5)+i+ 1}} </td>
+          <td>{{e.name}}</td>
+          <td>{{e.bagQuantity}}</td>
+          <td>{{e.size}}</td>
+
+        <td>
+
+          <a (click)="edit(e.id)" data-target="#myModal" data-toggle="modal">
+            <i class="fa fa-edit"> </i>
+          </a>
+
+        </td>
+        <td>
+          <a (click)="delete(e.id)">
+            <i class="fa fa-trash"></i>
+          </a>
+        </td>
+        <td> <a (click)="openAddCartModel(e)" data-target="#AddToCartModal" data-toggle="modal">
+          <i class="fa fa-plus"> </i>
+        </a></td>
+      </tr>
+    </tbody>
+  </table>
+  <button *ngIf="pageNo > 0" class="btn btn-primary" (click)="previous()">Previous</button>
+
+  <button *ngIf="list.length > 0" class="btn btn-primary" (click)="next()" style="float: right;">Next</button>
+</div>
+
+
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Product</h4>
+          <button type="button" class="close" data-dismiss="modal">
+            &times;
+          </button>
+
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form class="form">
+              <div class="alert alert-success" *ngIf="editMessage">
+                  <strong>{{editMessage}}</strong>
+                </div>
+
+            <div class="form-group">
+                <label class="control-label">Product Name </label> <font color="red">*</font>
+                <input type="text" [(ngModel)]="editForm.name" name="name" class="form-control">
+              </div>
+            <div class="form-group">
+                <label class="control-label">Bag Quantity</label> <font color="red">*</font>
+                <input type="text" [(ngModel)]="editForm.bagQuantity" name="bagQuantity" class="form-control">
+            </div>
+            <div class="form-group">
+                <label class="control-label">Size</label> <font color="red">*</font>
+                <input type="text" [(ngModel)]="editForm.size" name="discription" class="form-control">
+            </div>
+
+          </form>
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <button (click)="save()" type="submit" [disabled]="!validateAddRoleBt()" class="btn btn-success float-left">Save</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">
+            Close
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="modal fade" id="AddToCartModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Add Product</h4>
+          <button type="button" class="close" data-dismiss="modal">
+            &times;
+          </button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form class="form">
+              <div class="alert alert-success" *ngIf="cartAddedMessage">
+                  <strong>{{cartAddedMessage}}</strong>
+                </div>
+            <div class="form-group">
+                <label class="control-label">Quantity </label> <font color="red">*</font>
+                <input type="number" [(ngModel)]="addCartForm.qty" name="name" class="form-control">
+              </div>
+          </form>
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <button (click)="addToCart()" type="submit" [disabled]="!validateAddCart()" class="btn btn-success float-left">Save</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

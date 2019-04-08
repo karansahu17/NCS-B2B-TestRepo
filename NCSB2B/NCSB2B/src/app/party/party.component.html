@@ -1,0 +1,86 @@
+<div class="col-md-12 mt-2 pt-3">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <span class="anchor" id="formRegister"></span>
+
+      <div class="card card-outline-secondary">
+        <div class="card-header bg-dark">
+          <h3 class=" text-light">Party</h3>
+        </div>
+
+        <div class="card-body">
+          <div class="alert alert-success" *ngIf="message">
+            <strong>{{ message }}</strong>
+          </div>
+          <form class="form" role="form" autocomplete="off">
+            <div class="form-group">
+              <label>Name</label>
+              <input [(ngModel)]="form.name" name="name" type="text" class="form-control" placeholder="Enter Party Name" />
+            </div>
+            <div class="form-group">
+              <label>Address</label>
+              <input type="text" [(ngModel)]="form.address" name="address" class="form-control"
+                placeholder="Enter Address" required="" />
+            </div>
+            <div class="form-group">
+              <label>Type</label>
+              <input type="text" [(ngModel)]="form.type" name="type" class="form-control" placeholder="Enter Type"
+                required="" />
+            </div>
+            <!-- <div class="form-group">
+            <select>
+                <option value="" selected>--Select Type--</option>
+                <option value="Dealer">Dealer</option>
+                <option value="Distributor">Distributor</option>
+
+              </select>
+            </div> -->
+
+
+            <div class="form-group">
+              <label>Phone</label>
+              <input type="text" [(ngModel)]="form.phone" name="phone" class="form-control"
+                placeholder="Enter Phone Number" required="" />
+            </div>
+            <div class="form-group">
+              <label>Aadhar No.</label>
+              <input type="text" [(ngModel)]="form.aadharNo" name="aadharNo" class="form-control"
+                placeholder="Enter Aadhar Number" required="" />
+            </div>
+            <div class="form-group">
+              <label for="inputPassword3">GST Details</label>
+              <input type="text" [(ngModel)]="form.gstDetails" name="gstDetails" class="form-control"
+                placeholder="Enter Details" required="" />
+            </div>
+            <div class="form-group">
+              <label for="inputPassword3">Bank Deatails</label>
+              <input type="text" [(ngModel)]="form.bankDeatails" name="bankDeatails" class="form-control"
+                placeholder="Enter Details" required="" />
+            </div>
+            <div class="form-group">
+              <label for="inputPassword3">License No.</label>
+              <input type="text" [(ngModel)]="form.licenseNo" name="licenseNo" class="form-control"
+                placeholder="Enter LicenseNo" required="" />
+            </div>
+            <div class="form-group">
+              <label for="inputPassword3">Owner Photograph</label>
+              <input type="text" [(ngModel)]="form.ownerPhotograph" name="ownerPhotograph" class="form-control"
+                placeholder="Enter Photograph" required="" />
+            </div>
+
+            <div class="form-group">
+
+              <button (click)="save()" type="submit" [disabled]="!validateAddRoleBt()"
+                class="btn btn-success offset-md-4">
+                Save
+              </button>
+              <span class="mx-3"><button (click)="search()" type="submit" class="btn btn-primary">
+                  Search
+                </button></span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

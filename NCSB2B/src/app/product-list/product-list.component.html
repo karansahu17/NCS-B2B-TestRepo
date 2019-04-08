@@ -1,0 +1,28 @@
+<H1>Marksheet List</H1>
+
+<p style="color:red" >{{message}}</p>
+
+<table>
+    <tr>
+      <td>Name</td>
+      <td><input [(ngModel)]="form.name"  name="name" type="text"> </td>
+      <td ><button (click)="search()">Search</button></td>
+    </tr>  
+  </table>
+
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>size</th>
+    <th>bagQuantity</th>
+  </tr>
+  <tr  *ngFor = "let e of list" >
+    <td>{{e.id}}</td>
+    <td>{{e.name}}</td>
+    <td>{{e.size}}</td>
+    <td>{{e.bagQuantity}}</td>
+    <td><button (click)="edit(e.id)">Edit</button></td>
+    <td><button (click)="delete(e.id)">Delete</button></td>
+  </tr>
+</table>

@@ -1,0 +1,48 @@
+
+
+
+
+
+<div class="container pl-5">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="row">
+
+                <div class="col-md-6 offset-md-3">
+                    <span class="anchor" id="formRegister"></span>
+
+
+                    <!-- form card register -->
+                    <div class="card card-outline-secondary">
+                        <div class="card-header bg-dark">
+                            <h3 class="mb-0 text-light">Products</h3>
+                        </div>
+                        <p style="color:green" >{{message}}</p>
+                        <div class="card-body">
+                            <form class="form" role="form" autocomplete="off">
+                                <div class="form-group">
+                                    <label for="inputName">Name</label>
+                                    <input [(ngModel)]="form.name"  name="name" type="text" class="form-control" placeholder="Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail3">Size</label>
+                                    <input type="text" [(ngModel)]="form.size" name="size" class="form-control"  placeholder="Size" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPassword3">Quantity</label>
+                                    <input type="text"[(ngModel)]="form.bagQuantity" name="bagQuantity"  class="form-control"  placeholder="Quantity" required="">
+                                </div>
+
+                                <div class="form-group">
+                                    <button (click)="save()" type="submit" class="btn btn-success btn-lg float-left">Save</button>
+                                    <button (click)="search()" type="submit" class="btn btn-success btn-lg float-right">Search</button>
+
+                                  </div>
+                            </form>
+                        </div>
+                    </div>
+                    </div>
+                    </div></div></div></div>
+                    <!-- /form card register -->
+

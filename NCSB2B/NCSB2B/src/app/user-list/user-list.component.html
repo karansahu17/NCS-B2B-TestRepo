@@ -1,0 +1,264 @@
+&nbsp;&nbsp;
+<h1>&nbsp;User List</h1>
+<div class="row col-lg-12">
+  &nbsp; &nbsp;
+  <div class=" pt-1">
+    <input
+      class="input-large"
+      [(ngModel)]="form.firstName"
+      name="name"
+      type="text"
+      placeholder="Search by Name"
+    />
+  </div>
+  &nbsp;
+  <div class="col-lg-1.9">
+    <button (click)="search()" class="btn btn-primary">
+      Search
+      <i class="fa fa-search"></i>
+    </button>
+  </div>
+  <!-- <div class="col-lg-2">
+    <button (click)="edit(0)" type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Add
+      <i class='fa fa-plus'></i>
+    </button>
+
+  </div> -->
+  <div class="col-lg-5"></div>
+  <!-- <div class="pt-2 float-right ml-2">
+    <label>
+      <b>Page No.&nbsp; </b>
+    </label>
+    <select (change)="go($event.target.value)" style="width: 60px;">
+      <option *ngFor="let page of PageCount" value={{page.id}}>
+        {{page.value}}
+      </option>
+    </select>
+  </div> -->
+</div>
+<br />
+<div class="row alert alert-danger" *ngIf="searchMessage">
+  <strong>{{ searchMessage }}</strong>
+</div>
+<div class="row alert alert-success" *ngIf="deleteMessage">
+  <strong>{{ deleteMessage }}</strong>
+</div>
+
+<div class="p-2">
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Login ID</th>
+        <th>PASSWORD</th>
+        <!-- <th>EMAIL</th> -->
+        <th>STATUS</th>
+        <th>ROLE</th>
+        <th>PHONE</th>
+        <!-- <th>ALTER MOBILE</th> -->
+        <th>DOB</th>
+        <th>GENDER</th>
+        <th>IMAGE PATH</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let e of list; let i = index">
+        <td>{{ pageNo * 5 + i + 1 }}</td>
+        <td>{{ e.firstName }}</td>
+        <td>{{ e.lastName }}</td>
+        <td>{{ e.loginId }}</td>
+        <td>{{ e.password }}</td>
+        <!-- <td>{{e.email}}</td> -->
+        <td>{{ e.status }}</td>
+        <td>{{ e.roleName }}</td>
+        <td>{{ e.phone }}</td>
+        <!-- <td>{{e.alternateMobile}}</td> -->
+        <td>{{ e.dob | date: 'd-M-y' }}</td>
+        <td>{{ e.gender }}</td>
+        <td>{{ e.imagePath }}</td>
+        <td>
+          <a (click)="edit(e.id)" data-target="#myModal" data-toggle="modal">
+            <i class="fa fa-edit"> </i>
+          </a>
+        </td>
+        <td>
+          <a (click)="delete(e.id)">
+            <i class="fa fa-trash"> </i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button *ngIf="pageNo > 0" class="btn btn-primary" (click)="previous()">
+    Previous
+  </button>
+
+  <button
+    *ngIf="list.length > 0"
+    class="btn btn-primary"
+    (click)="next()"
+    style="float: right;"
+  >
+    Next
+  </button>
+</div>
+
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">User</h4>
+        <button type="button" class="close" data-dismiss="modal">
+          &times;
+        </button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form class="form">
+          <div class="alert alert-success" *ngIf="editMessage">
+            <strong>{{ editMessage }}</strong>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label">First Name </label>
+            <font color="red">*</font>
+            <input
+              type="text"
+              [(ngModel)]="editForm.firstName"
+              name="firstName"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <label class="control-label">Last Name</label>
+            <font color="red">*</font>
+            <input
+              type="text"
+              [(ngModel)]="editForm.lastName"
+              name="lastName"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <label class="control-label">Login Id</label>
+            <font color="red">*</font>
+            <input
+              type="text"
+              [(ngModel)]="editForm.loginId"
+              name="loginId"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <label class="control-label">Password </label>
+            <font color="red">*</font>
+            <input
+              type="text"
+              [(ngModel)]="editForm.password"
+              name="password"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <label class="control-label">Email</label>
+            <!-- <font color="red">*</font> -->
+            <input
+              type="text"
+              [(ngModel)]="editForm.email"
+              name="email"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <label class="control-label">Status</label>
+            <font color="red">*</font>
+            <input
+              type="text"
+              [(ngModel)]="editForm.status"
+              name="status"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <label class="control-label">Role Name </label>
+            <font color="red">*</font>
+            <input
+              type="text"
+              [(ngModel)]="editForm.roleName"
+              name="roleName"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <label class="control-label">Phone</label>
+            <font color="red">*</font>
+            <input
+              type="text"
+              [(ngModel)]="editForm.phone"
+              name="phone"
+              class="form-control"
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="control-label">Alternate Mobile</label>
+            <input
+              type="text"
+              [(ngModel)]="editForm.alternateMobile"
+              name="alternateMobile"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <label class="control-label">DOB</label> <font color="red">*</font>
+            <input
+              type="text"
+              [(ngModel)]="editForm.dob"
+              name="dob"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+              <label for="inputPassword3">Gender</label>
+              <select class="form-control"  [(ngModel)]="editForm.gender" name="gender" placeholder="Enter your Gender" >
+                  <option value="" selected>--Select Gender--</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+
+                </select>
+          </div>
+          <div class="form-group">
+            <label class="control-label">ImagePath</label>
+            <font color="red">*</font>
+            <input
+              type="text"
+              [(ngModel)]="editForm.imagePath"
+              name="imagePath"
+              class="form-control"
+            />
+          </div>
+        </form>
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button
+          (click)="save()"
+          type="submit"
+          [disabled]="!validateAddRoleBt()"
+          class="btn btn-success float-left"
+        >
+          Save
+        </button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

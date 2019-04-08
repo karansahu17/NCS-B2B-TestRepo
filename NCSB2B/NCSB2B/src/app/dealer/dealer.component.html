@@ -1,0 +1,159 @@
+&nbsp;&nbsp;<h1>&nbsp;Dealer List</h1>
+<div class="row col-lg-12">
+    &nbsp; &nbsp;
+    <div class=" pt-1">
+      <input class="input-large" [(ngModel)]="form.name" name="name" type="text" placeholder="Search by Name" />
+    </div>&nbsp;
+    <div class="col-lg-1.9">
+
+      <button (click)="search()" class="btn btn-primary">
+        Search
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+    <div class="col-lg-2">
+      <button (click)="edit(0)" type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Add
+        <i class='fa fa-plus'></i>
+      </button>
+
+    </div>
+    <div class="col-lg-5"></div>
+    <!-- <div class="pt-2 float-right ml-2">
+      <label>
+        <b>Page No.&nbsp; </b>
+      </label>
+      <select (change)="go($event.target.value)" style="width: 60px;">
+        <option *ngFor="let page of PageCount" value={{page.id}}>
+          {{page.value}}
+        </option>
+      </select>
+    </div> -->
+  </div>
+  <br>
+  <div class="row alert alert-danger" *ngIf="searchMessage">
+    <strong>{{searchMessage}}</strong>
+  </div>
+  <div class="row alert alert-success" *ngIf="deleteMessage">
+    <strong>{{deleteMessage}}</strong>
+  </div>
+
+   <div class="p-2">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+    <tr>
+        <th scope="col">#</th>
+
+      <th>Name</th>
+      <th>Address</th>
+      <th>Type</th>
+      <th>Phone</th>
+      <th>Aadhar</th>
+      <th>GST</th>
+      <th>Bank</th>
+      <th>License</th>
+      <th>Photography</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let e of dealerList ; let i = index ; ">
+      <td> {{(pageNo*5)+i+ 1}} </td>
+      <td>{{e.name}}</td>
+      <td>{{e.address}}</td>
+      <td>{{e.type}}</td>
+      <td>{{e.phone}}</td>
+      <td>{{e.aadharNo}}</td>
+      <td>{{e.gstDetails}}</td>
+      <td>{{e.bankDeatails}}</td>
+      <td>{{e.licenseNo}}</td>
+      <td>{{e.ownerPhotograph}}</td>
+      <td> <a (click)="edit(e.id)" data-target="#myModal" data-toggle="modal">
+          <i class="fa fa-edit"> </i>
+        </a></td>
+          <td><a (click)="delete(e.id)">
+              <i class="fa fa-trash"> </i>
+              </a></td>
+    <!-- </tr> -->
+    </tr>
+
+  </tbody>
+  </table>
+  <button *ngIf="pageNo > 0" class="btn btn-primary" (click)="previous()">Previous</button>
+
+  <button *ngIf="list.length > 0" class="btn btn-primary" (click)="next()" style="float: right;">Next</button>
+  </div>
+
+
+  <div class="modal fade" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Dealer</h4>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <form class="form">
+                <div class="alert alert-success" *ngIf="editMessage">
+                    <strong>{{editMessage}}</strong>
+                  </div>
+
+              <div class="form-group">
+                  <label class="control-label">Party Name </label> <font color="red">*</font>
+                  <input type="text" [(ngModel)]="editForm.name" name="name" class="form-control" placeholder="Enter Party Name">
+                </div>
+              <div class="form-group">
+                  <label class="control-label">Address</label> <font color="red">*</font>
+                  <input type="text" [(ngModel)]="editForm.address" name="address" class="form-control" placeholder="Enter Address">
+              </div>
+              <!-- <div class="form-group">
+                  <label class="control-label">Type</label> <font color="red">*</font>
+                  <input type="text" [(ngModel)]="editForm.type" name="type" class="form-control">
+              </div> -->
+              <div class="form-group">
+                  <label class="control-label">Phone </label> <font color="red">*</font>
+                  <input type="text" [(ngModel)]="editForm.phone" name="phone" class="form-control" placeholder="8888888888">
+                </div>
+              <div class="form-group">
+                  <label class="control-label">Aadhar No.</label> <font color="red">*</font>
+                  <input type="text" [(ngModel)]="editForm.aadharNo" name="aadharNo" class="form-control" placeholder="1234-1234-1234">
+              </div>
+              <div class="form-group">
+                  <label class="control-label">GST Details</label> <font color="red">*</font>
+                  <input type="text" [(ngModel)]="editForm.gstDetails" name="gstDetails" class="form-control" placeholder="Enter GST Details">
+              </div>
+              <div class="form-group">
+                  <label class="control-label">Bank Details </label> <font color="red">*</font>
+                  <input type="text" [(ngModel)]="editForm.bankDeatails" name="bankDeatails" class="form-control" placeholder="Enter Bank Details">
+                </div>
+              <div class="form-group">
+                  <label class="control-label">License No.</label> <font color="red">*</font>
+                  <input type="text" [(ngModel)]="editForm.licenseNo" name="licenseNo" class="form-control" placeholder="Enter License No.">
+              </div>
+              <div class="form-group">
+                  <label class="control-label">Owner Photo</label> <font color="red">*</font>
+                  <input type="text" [(ngModel)]="editForm.ownerPhotograph" name="ownerPhotograph" class="form-control" placeholder="Owner Photo ">
+              </div>
+
+            </form>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+              <button (click)="save()" type="submit" [disabled]="!validateAddRoleBt()" class="btn btn-success float-left">Save</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">
+              Close
+            </button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+

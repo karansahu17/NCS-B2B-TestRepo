@@ -1,0 +1,23 @@
+<H1>Product</H1>
+<p style="color:red" >{{message}}</p>
+<form >
+<table>
+  <tr>
+    <td>Name</td>
+    <td><input [(ngModel)]="form.name"  name="name" type="text"> </td>
+</tr>
+  <tr>
+    <td>Size</td>
+    <td><input [(ngModel)]="form.size"  name="size" type="text"></td>
+  </tr>
+
+  <tr>
+      <td>Bag Quantity</td>
+      <td><input [(ngModel)]="form.bagQuantity"  name="bagQuantity" type="text"> </td>
+  </tr>
+  <tr>
+      <td><button (click)="save()">Save</button></td>
+      <td><button (click)="search()">Search</button></td>
+  </tr>
+</table>
+</form>
